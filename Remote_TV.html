@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mô phỏng Remote và TV</title>
+</head>
+<body>
+<script>
+    let Remote = function (name) {
+        this.chungloai = name;
+        this.connectToTV = function (TV) {
+            this.TV = TV;
+        };
+        this.chuyenkenh = function (n) {
+            if (n>=0) {
+                this.TV.kenh = n;
+            }
+        };
+        this.power = function() {
+            if (this.TV.battery>0) {
+                this.TV.status = !this.TV.status;
+            } else {
+                this.TV.status = false;
+            }
+        };
+        this.setVolume = function (x) {
+            if (x==='+') {
+                this.TV.volume++;
+            } else if (x==='-') {
+                this.TV.volume--;
+            }
+        };
+    };
+    let Television = function (battery,status,kenh,volume) {
+        this.battery = battery;
+        this.kenh = kenh;
+        this.volume = volume;
+        this.status = status;
+    };
+    let TV = new Television(1,false,3,15);
+    let dieukhien = new Remote("pana");
+    dieukhien.connectToTV(TV);
+</script>
+</body>
+</html>
